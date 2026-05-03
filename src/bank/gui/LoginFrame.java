@@ -56,11 +56,11 @@ public class LoginFrame extends JFrame {
     }
 
     private void buildUI() {
-        setTitle("NexBank — Secure Banking");
+        setTitle("DsBank");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(440, 580);
+        setSize(500, 700);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         getContentPane().setBackground(BG);
         setLayout(new BorderLayout());
 
@@ -86,19 +86,19 @@ public class LoginFrame extends JFrame {
         h.setLayout(new BoxLayout(h, BoxLayout.Y_AXIS));
         h.setBorder(new EmptyBorder(28, 32, 24, 32));
 
-        JLabel logo = new JLabel("NexBank");
+        JLabel logo = new JLabel("DsBank");
         logo.setFont(new Font("Georgia", Font.BOLD, 26));
         logo.setForeground(Color.WHITE);
         logo.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        JLabel sub = new JLabel("Modern Banking, Simply Done");
-        sub.setFont(new Font("SansSerif", Font.PLAIN, 12));
-        sub.setForeground(new Color(0xBFD4F2));
-        sub.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // JLabel sub = new JLabel("Modern Banking, Simply Done");
+        // sub.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        // sub.setForeground(new Color(0xBFD4F2));
+        // sub.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         h.add(logo);
         h.add(Box.createVerticalStrut(4));
-        h.add(sub);
+        // h.add(sub);
         return h;
     }
 
@@ -127,7 +127,7 @@ public class LoginFrame extends JFrame {
         sub.setForeground(MUTED);
         sub.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        loginAccountField  = styledField("Account Number");
+        loginAccountField  = styledField("Phone Number");
         loginPasswordField = styledPassword("Password");
 
         JButton loginBtn = primaryButton("Sign In");
@@ -149,7 +149,7 @@ public class LoginFrame extends JFrame {
         card.add(Box.createVerticalStrut(4));
         card.add(sub);
         card.add(Box.createVerticalStrut(22));
-        card.add(label("Account Number"));
+        card.add(label("Phone Number"));
         card.add(Box.createVerticalStrut(6));
         card.add(loginAccountField);
         card.add(Box.createVerticalStrut(14));
@@ -280,14 +280,16 @@ public class LoginFrame extends JFrame {
             String accNo = bank.registerUser(name, phone, pass, deposit);
             JOptionPane.showMessageDialog(this,
                 "<html><b>Account created successfully!</b><br><br>" +
-                "Your Account Number: <b>" + accNo + "</b><br>" +
-                "Please save this number — you will use it to log in.</html>",
+                "Your Account Number: <b>" + accNo + "</b><br>" 
+                // +
+                // "Please save this number — you will use it to log in.</html>"
+        ,
                 "Account Created", JOptionPane.INFORMATION_MESSAGE);
             // Clear fields and switch to login
             signupNameField.setText(""); signupPhoneField.setText("");
             signupDepositField.setText(""); signupPasswordField.setText("");
             signupConfirmField.setText("");
-            loginAccountField.setText(accNo);
+            loginAccountField.setText(phone);
             cardLayout.show(cards, "LOGIN");
         } catch (Exception ex) {
             showError(ex.getMessage().replace("java.rmi.RemoteException: ", ""));

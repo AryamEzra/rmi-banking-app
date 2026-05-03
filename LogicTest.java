@@ -84,7 +84,7 @@ public class LogicTest {
 
     public static void main(String[] args) throws Exception {
         System.out.println("\n═══════════════════════════════════════════════");
-        System.out.println("   NexBank RMI — Core Logic Test Suite");
+        System.out.println("   DsBank RMI — Core Logic Test Suite");
         System.out.println("═══════════════════════════════════════════════\n");
 
         // 1. Registration & sequential account numbers

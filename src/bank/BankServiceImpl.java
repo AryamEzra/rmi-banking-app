@@ -42,13 +42,25 @@ public class BankServiceImpl extends UnicastRemoteObject implements BankService 
         return u;
     }
 
-    // ── RMI operations ─────────────────────────────────────────────────────
+    private void validateEthiopianPhone(String phone) throws RemoteException {
+            // Normalize: strip spaces/dashes
+            String p = phone.replaceAll("[\\s\\-]", "");
+            boolean valid = p.matches("^(\\+2519|\\+2517)\\d{8}$")   // +251 format (13 chars)
+                        || p.matches("^(09|07)\\d{8}$");              // local 0X format (10 digits)
+            if (!valid)
+                throw new RemoteException(
+                    "Enter a valid Ethiopian phone number (e.g. 0911234567 or +251911234567).");
+        }
 
+    // ── RMI operations ─────────────────────────────────────────────────────
+    
     @Override
     public synchronized String registerUser(String name, String phone,
                                              String password, double initialDeposit)
             throws RemoteException {
-
+        
+        validateEthiopianPhone(phone);
+                
         if (initialDeposit < 0)
             throw new RemoteException("Initial deposit cannot be negative.");
 
@@ -57,6 +69,8 @@ public class BankServiceImpl extends UnicastRemoteObject implements BankService 
             if (u.getPhone().equals(phone))
                 throw new RemoteException("Phone number already registered.");
         }
+
+        
 
         String accountNo = String.valueOf(accountCounter.getAndIncrement());
         String hash = sha256(password);
@@ -67,18 +81,18 @@ public class BankServiceImpl extends UnicastRemoteObject implements BankService 
         return accountNo;
     }
 
+
     @Override
-    public synchronized String[] login(String accountNo, String password)
-            throws RemoteException {
-        User u = getUser(accountNo);
-        if (!u.getPasswordHash().equals(sha256(password)))
-            throw new RemoteException("Invalid account number or password.");
-        return new String[]{
-            u.getAccountNo(),
-            u.getName(),
-            u.getPhone(),
-            String.valueOf(u.getBalance())
-        };
+    public synchronized String[] login(String phone, String password) throws RemoteException {
+        // Search by phone instead of account number
+        User found = null;
+        for (User u : accounts.values()) {
+            if (u.getPhone().equals(phone)) { found = u; break; }
+        }
+        if (found == null || !found.getPasswordHash().equals(sha256(password)))
+            throw new RemoteException("Invalid phone number or password.");
+        return new String[]{ found.getAccountNo(), found.getName(),
+                            found.getPhone(), String.valueOf(found.getBalance()) };
     }
 
     @Override

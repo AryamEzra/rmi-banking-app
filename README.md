@@ -1,4 +1,4 @@
-# NexBank — Simple RMI Banking Application
+# DsBank — Simple RMI Banking Application
 
 ## Project Structure
 

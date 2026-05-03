@@ -45,11 +45,11 @@ public class BankingFrame extends JFrame {
         this.accountNo = accountNo;
         this.balance   = balance;
 
-        setTitle("NexBank — Dashboard");
+        setTitle("DsBank — Dashboard");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 560);
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setLayout(new BorderLayout(0, 0));
 
         add(buildSidebar(name, phone), BorderLayout.WEST);
@@ -69,15 +69,15 @@ public class BankingFrame extends JFrame {
         s.setBorder(new EmptyBorder(28, 0, 28, 0));
 
         // Logo
-        JLabel logo = new JLabel("NexBank");
+        JLabel logo = new JLabel("DsBank");
         logo.setFont(new Font("Georgia", Font.BOLD, 20));
         logo.setForeground(Color.WHITE);
         logo.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel logoSub = new JLabel("Secure Banking");
-        logoSub.setFont(new Font("SansSerif", Font.PLAIN, 10));
-        logoSub.setForeground(new Color(0x7FB3D3));
-        logoSub.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // JLabel logoSub = new JLabel("Secure Banking");
+        // logoSub.setFont(new Font("SansSerif", Font.PLAIN, 10));
+        // logoSub.setForeground(new Color(0x7FB3D3));
+        // logoSub.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Avatar / user block
         JPanel userBlock = new JPanel();
@@ -145,10 +145,10 @@ public class BankingFrame extends JFrame {
 
         s.add(logo);
         s.add(Box.createVerticalStrut(2));
-        s.add(logoSub);
+        // s.add(logoSub);
         s.add(userBlock);
         s.add(new JSeparator() {{
-            setMaximumSize(new Dimension(180, 1));
+            setMaximumSize(new Dimension(Integer.MAX_VALUE, 1));
             setForeground(new Color(0x1E3A5F));
             setAlignmentX(Component.CENTER_ALIGNMENT);
         }});
@@ -276,7 +276,7 @@ public class BankingFrame extends JFrame {
 
     private JPanel buildTransferPanel() {
         JPanel p = operationCard("Transfer Funds",
-            "Send money to another NexBank account");
+            "Send money to another DsBank account");
 
         JTextField toField  = opField("Recipient Account Number");
         JTextField amtField = opField("0.00");

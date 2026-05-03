@@ -11,7 +11,7 @@ public interface BankService extends Remote {
 
     // Returns the logged-in user's full info as a String array:
     // [accountNo, name, phone, balance]
-    String[] login(String accountNo, String password) throws RemoteException;
+    String[] login(String phone, String password) throws RemoteException;
 
     double deposit(String accountNo, double amount) throws RemoteException;
 

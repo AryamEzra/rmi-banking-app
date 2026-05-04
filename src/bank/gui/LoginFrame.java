@@ -5,7 +5,6 @@ import bank.BankService;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
@@ -35,8 +34,6 @@ public class LoginFrame extends JFrame {
     private static final Color ACCENT    = new Color(0x2563EB);
     private static final Color MUTED     = new Color(0x6B7280);
     private static final Color BORDER_C  = new Color(0xE5E7EB);
-    private static final Color ERROR_C   = new Color(0xDC2626);
-    private static final Color SUCCESS_C = new Color(0x16A34A);
 
     public LoginFrame() {
         connectToServer();
@@ -313,7 +310,7 @@ public class LoginFrame extends JFrame {
                 if (getText().isEmpty() && !isFocusOwner()) {
                     g.setColor(new Color(0xADB5BD));
                     g.setFont(getFont().deriveFont(Font.ITALIC));
-                    g.drawString(placeholder, 10, getHeight() / 2 + 5);
+                    g.drawString(placeholder, 16, getHeight() / 2 + 5);
                 }
             }
         };
@@ -335,7 +332,7 @@ public class LoginFrame extends JFrame {
                 if (getPassword().length == 0 && !isFocusOwner()) {
                     g.setColor(new Color(0xADB5BD));
                     g.setFont(new Font("SansSerif", Font.ITALIC, 13));
-                    g.drawString(placeholder, 10, getHeight() / 2 + 5);
+                    g.drawString(placeholder, 16, getHeight() / 2 + 5);
                 }
             }
         };

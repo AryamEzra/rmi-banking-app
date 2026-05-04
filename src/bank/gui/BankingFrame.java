@@ -5,7 +5,6 @@ import bank.BankService;
 import javax.swing.*;
 import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -72,7 +71,8 @@ public class BankingFrame extends JFrame {
         JLabel logo = new JLabel("DsBank");
         logo.setFont(new Font("Georgia", Font.BOLD, 20));
         logo.setForeground(Color.WHITE);
-        logo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        logo.setBorder(new EmptyBorder(2, 30, 0, 0));
 
         // JLabel logoSub = new JLabel("Secure Banking");
         // logoSub.setFont(new Font("SansSerif", Font.PLAIN, 10));
@@ -83,9 +83,9 @@ public class BankingFrame extends JFrame {
         JPanel userBlock = new JPanel();
         userBlock.setOpaque(false);
         userBlock.setLayout(new BoxLayout(userBlock, BoxLayout.Y_AXIS));
-        userBlock.setAlignmentX(Component.CENTER_ALIGNMENT);
-        userBlock.setBorder(new EmptyBorder(20, 16, 20, 16));
-
+        userBlock.setAlignmentX(Component.LEFT_ALIGNMENT);
+        userBlock.setBorder(new EmptyBorder(20, 26, 20, 16));
+        
         JLabel avatar = new JLabel(String.valueOf(name.charAt(0)).toUpperCase());
         avatar.setFont(new Font("Georgia", Font.BOLD, 22));
         avatar.setForeground(SIDEBAR);
@@ -94,16 +94,19 @@ public class BankingFrame extends JFrame {
         avatar.setPreferredSize(new Dimension(48, 48));
         avatar.setHorizontalAlignment(SwingConstants.CENTER);
         avatar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // avatar.setBorder(new EmptyBorder(2, 36, 0, 0));
 
         welcomeLabel = new JLabel(name);
         welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 13));
         welcomeLabel.setForeground(Color.WHITE);
         welcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        welcomeLabel.setBorder(new EmptyBorder(2, 0, 0, 0));
 
-        JLabel accLabel = new JLabel("Acct: " + accountNo);
+        JLabel accLabel = new JLabel("AccNo: " + accountNo);
         accLabel.setFont(new Font("SansSerif", Font.PLAIN, 11));
         accLabel.setForeground(new Color(0x7FB3D3));
         accLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        accLabel.setBorder(new EmptyBorder(2, 0, 0, 0));
 
         userBlock.add(avatar);
         userBlock.add(Box.createVerticalStrut(10));
@@ -118,7 +121,8 @@ public class BankingFrame extends JFrame {
         JPanel nav = new JPanel();
         nav.setOpaque(false);
         nav.setLayout(new BoxLayout(nav, BoxLayout.Y_AXIS));
-        nav.setBorder(new EmptyBorder(0, 12, 0, 12));
+        nav.setAlignmentX(Component.LEFT_ALIGNMENT);
+        nav.setBorder(new EmptyBorder(16, 16, 0, 0));
 
         for (int i = 0; i < tabs.length; i++) {
             final int idx = i;
@@ -137,7 +141,8 @@ public class BankingFrame extends JFrame {
         logout.setBorderPainted(false);
         logout.setFocusPainted(false);
         logout.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        logout.setAlignmentX(Component.CENTER_ALIGNMENT);
+        logout.setAlignmentX(Component.LEFT_ALIGNMENT);
+        logout.setBorder(new EmptyBorder(16, 27, 0, 0));
         logout.addActionListener(e -> {
             new LoginFrame();
             dispose();
@@ -436,7 +441,7 @@ public class BankingFrame extends JFrame {
                 if (getText().isEmpty() && !isFocusOwner()) {
                     g.setColor(new Color(0xADB5BD));
                     g.setFont(getFont().deriveFont(Font.ITALIC));
-                    g.drawString(placeholder, 10, getHeight() / 2 + 5);
+                    g.drawString(placeholder, 16, getHeight() / 2 + 5);
                 }
             }
         };
@@ -483,7 +488,7 @@ public class BankingFrame extends JFrame {
         b.setBorderPainted(false);
         b.setFocusPainted(false);
         b.setHorizontalAlignment(SwingConstants.LEFT);
-        b.setBorder(new EmptyBorder(10, 14, 10, 14));
+        b.setBorder(new EmptyBorder(10, 10, 10, 10));
         b.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
         b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         b.setAlignmentX(Component.LEFT_ALIGNMENT);
